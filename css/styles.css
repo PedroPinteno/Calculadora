@@ -1,0 +1,249 @@
+:root {
+    --primary-color: #2563eb;
+    --secondary-color: #1e40af;
+    --background-color: #f3f4f6;
+    --calculator-bg: #ffffff;
+    --button-bg: #f8fafc;
+    --button-hover: #e2e8f0;
+    --operator-bg: #dbeafe;
+    --operator-hover: #bfdbfe;
+    --equals-bg: #2563eb;
+    --equals-hover: #1d4ed8;
+    --text-color: #1f2937;
+    --text-light: #6b7280;
+    --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --transition: all 0.2s ease;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--background-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    color: var(--text-color);
+}
+
+.container {
+    display: flex;
+    gap: 1rem;
+    padding: 1rem;
+    max-width: 800px;
+    width: 100%;
+}
+
+.calculator {
+    background-color: var(--calculator-bg);
+    border-radius: 1rem;
+    padding: 1.5rem;
+    box-shadow: var(--shadow);
+    flex: 1;
+    max-width: 400px;
+}
+
+.calculator-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.calculator-header h1 {
+    font-size: 1.5rem;
+    color: var(--text-color);
+}
+
+.history-toggle {
+    background: none;
+    border: none;
+    color: var(--primary-color);
+    font-size: 1.25rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    transition: var(--transition);
+}
+
+.history-toggle:hover {
+    background-color: var(--button-hover);
+}
+
+.display {
+    background-color: var(--button-bg);
+    padding: 1rem;
+    border-radius: 0.5rem;
+    margin-bottom: 1rem;
+    text-align: right;
+}
+
+.history-display {
+    font-size: 0.875rem;
+    color: var(--text-light);
+    min-height: 1.25rem;
+    margin-bottom: 0.5rem;
+}
+
+.previous-operand {
+    font-size: 1.25rem;
+    color: var(--text-light);
+    min-height: 1.5rem;
+}
+
+.current-operand {
+    font-size: 2rem;
+    font-weight: bold;
+    overflow-wrap: break-word;
+}
+
+.buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.75rem;
+}
+
+button {
+    font-size: 1.25rem;
+    padding: 1rem;
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: var(--transition);
+    background-color: var(--button-bg);
+    color: var(--text-color);
+}
+
+button:hover {
+    background-color: var(--button-hover);
+    transform: translateY(-2px);
+}
+
+.operator {
+    background-color: var(--operator-bg);
+    color: var(--primary-color);
+}
+
+.operator:hover {
+    background-color: var(--operator-hover);
+}
+
+.equals {
+    background-color: var(--equals-bg);
+    color: white;
+}
+
+.equals:hover {
+    background-color: var(--equals-hover);
+}
+
+.special {
+    color: var(--primary-color);
+}
+
+/* History Panel */
+.history-panel {
+    background-color: var(--calculator-bg);
+    border-radius: 1rem;
+    padding: 1.5rem;
+    box-shadow: var(--shadow);
+    width: 300px;
+    display: none;
+}
+
+.history-panel.active {
+    display: block;
+    animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.history-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.history-header h2 {
+    font-size: 1.25rem;
+}
+
+.clear-history {
+    background: none;
+    border: none;
+    color: var(--text-light);
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    transition: var(--transition);
+}
+
+.clear-history:hover {
+    background-color: var(--button-hover);
+    color: #ef4444;
+}
+
+.history-list {
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.history-item {
+    padding: 0.75rem;
+    border-bottom: 1px solid var(--button-hover);
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.history-item:hover {
+    background-color: var(--button-bg);
+}
+
+.history-item:last-child {
+    border-bottom: none;
+}
+
+.history-expression {
+    color: var(--text-light);
+    font-size: 0.875rem;
+}
+
+.history-result {
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+    }
+
+    .calculator {
+        max-width: 100%;
+    }
+
+    .history-panel {
+        width: 100%;
+    }
+}
+
+/* Button Press Animation */
+button:active {
+    transform: translateY(0);
+}
